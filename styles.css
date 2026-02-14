@@ -808,12 +808,16 @@ body {
 .instruction-item {
     counter-increment: instruction-counter;
     position: relative;
-    padding: 1.5rem 1.5rem 1.5rem 4.5rem;
+    padding: 1.5rem;
+    padding-right: 5rem;
     margin-bottom: 1rem;
     background: white;
     border: 2px solid var(--bg-light);
     border-radius: var(--radius-md);
     transition: all 0.3s ease;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
 }
 
 .instruction-item:hover {
@@ -825,10 +829,10 @@ body {
     content: counter(instruction-counter);
     position: absolute;
     right: 1.5rem;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 1.5rem;
     width: 40px;
     height: 40px;
+    min-width: 40px;
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
     border-radius: 50%;
@@ -837,6 +841,7 @@ body {
     justify-content: center;
     font-weight: bold;
     font-size: 1.2rem;
+    flex-shrink: 0;
 }
 
 .tip-box {
@@ -975,13 +980,14 @@ body {
     }
     
     .instruction-item {
-        padding-right: 1rem;
+        padding: 1.5rem;
+        padding-right: 4.5rem;
     }
     
     .instruction-item::before {
-        position: static;
-        transform: none;
-        margin-bottom: 0.5rem;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
     }
 }
 
