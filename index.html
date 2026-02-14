@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مطبخ النكهات - وصفات طبخ مغربية</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Hero Header -->
+    <header class="hero">
+        <div class="hero-overlay"></div>
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <h1 class="logo">مطبخ النكهات</h1>
+                    <p class="tagline">رحلة في عالم المذاق المغربي</p>
+                </div>
+                <div class="nav-actions">
+                    <button class="favorites-btn" id="favoritesBtn">
+                        <span class="heart-icon">♥</span>
+                        <span class="favorites-count">0</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="hero-content">
+            <h2 class="hero-title">اكتشف نكهات المطبخ المغربي</h2>
+            <p class="hero-subtitle">75 وصفة أصيلة من قلب المغرب</p>
+        </div>
+    </header>
+
+    <!-- Search and Filter Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="ابحث عن وصفة...">
+                <button class="search-btn" id="searchBtn">
+                    <span>🔍</span>
+                </button>
+            </div>
+            
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">الكل</button>
+                <button class="filter-btn" data-filter="quick">سريعة التحضير</button>
+                <button class="filter-btn" data-filter="budget">اقتصادية</button>
+                <button class="filter-btn" data-filter="family">للعائلة</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalRecipes">75</div>
+                    <div class="stat-label">وصفة متنوعة</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="avgTime">45</div>
+                    <div class="stat-label">دقيقة متوسط التحضير</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="avgCost">65</div>
+                    <div class="stat-label">درهم متوسط التكلفة</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recipes Grid -->
+    <main class="recipes-main">
+        <div class="container">
+            <div class="recipes-header">
+                <h2 class="section-title">جميع الوصفات</h2>
+                <div class="sort-controls">
+                    <select id="sortSelect" class="sort-select">
+                        <option value="default">الترتيب الافتراضي</option>
+                        <option value="time-asc">الأسرع تحضيراً</option>
+                        <option value="time-desc">الأطول تحضيراً</option>
+                        <option value="cost-asc">الأقل تكلفة</option>
+                        <option value="cost-desc">الأعلى تكلفة</option>
+                        <option value="servings-asc">أقل عدد أشخاص</option>
+                        <option value="servings-desc">أكثر عدد أشخاص</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="recipes-grid" id="recipesGrid">
+                <!-- Recipe cards will be inserted here by JavaScript -->
+            </div>
+            
+            <div class="loading" id="loading">
+                <div class="loader"></div>
+                <p>جاري تحميل الوصفات...</p>
+            </div>
+            
+            <div class="no-results" id="noResults" style="display: none;">
+                <div class="no-results-icon">🔍</div>
+                <h3>لم يتم العثور على نتائج</h3>
+                <p>حاول البحث بكلمات مختلفة أو تصفح جميع الوصفات</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Recipe Modal -->
+    <div class="modal" id="recipeModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-body" id="modalBody">
+                <!-- Recipe details will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Favorites Modal -->
+    <div class="modal" id="favoritesModal">
+        <div class="modal-overlay" id="favoritesModalOverlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="favoritesModalClose">&times;</button>
+            <div class="modal-body">
+                <h2 class="modal-title">وصفاتي المفضلة</h2>
+                <div class="favorites-grid" id="favoritesGrid">
+                    <!-- Favorite recipes will be inserted here -->
+                </div>
+                <div class="no-favorites" id="noFavorites">
+                    <div class="no-favorites-icon">♥</div>
+                    <h3>لا توجد وصفات مفضلة بعد</h3>
+                    <p>ابدأ بإضافة وصفاتك المفضلة بالنقر على أيقونة القلب</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>مطبخ النكهات</h3>
+                    <p>مجموعة مختارة من أفضل الوصفات المغربية الأصيلة</p>
+                </div>
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="#" id="allRecipesLink">جميع الوصفات</a></li>
+                        <li><a href="#" id="favoritesLink">المفضلة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>إحصائيات</h4>
+                    <p><span id="footerRecipeCount">75</span> وصفة متاحة</p>
+                    <p>تحديث يومي</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 مطبخ النكهات. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
